@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <title> Places </title>
+</head>
+
+<body style="background-color: #FAF0CA; font-family: 'Raleway', sans-serif;">
+    <button style="border: none; background-color: transparent; margin-top: 10px;"
+        onmouseover="changeIconColor(this, 'red')" onmouseout="revertIconColor(this)"
+        onclick="location.href = '/'"> <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> </button>
+
+    <h1 style="text-align: center; margin-top: 15px;"> Edit Place </h1>
+
+    <div style="width: 90%; margin: auto; margin-top: 2%; background-color: #CAFAF0; border-radius: 10px; margin-bottom: 20px;">
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Place Name </p>
+            <p style="display: inline; font-size: 30px; color: red;"> * </p>
+            <br>
+            <input id="place-name" type="text"
+                style="width: 90%; border: none; border-radius: 5px; background-color: white; height: 35px;"
+                placeholder="Type Here..." maxlength="100">
+            <p id="place-error" style="color: red; margin-bottom: 0px; display: none;"> Please provide a place name </p>
+        </div>
+
+        <div style="width: 90%; margin: auto; margin-top: 12.5px;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> City Name </p>
+            <br>
+            <input id="city-name" type="text"
+                style="width: 90%; border: none; border-radius: 5px; background-color: white; height: 35px;"
+                placeholder="Type Here..." maxlength="100">
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Country Name </p>
+            <p style="display: inline; font-size: 30px; color: red;"> * </p>
+            <br>
+            <input id="country-name" type="text"
+                style="width: 90%; border: none; border-radius: 5px; background-color: white; height: 35px;"
+                placeholder="Type Here..." maxlength="100">
+            <p id="country-error" style="color: red; margin-bottom: 0px; display: none;"> Please provide a country name
+            </p>
+        </div>
+
+        <div style="width: 90%; margin: auto; margin-top: 12.5px;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> State/Province Name </p>
+            <br>
+            <input id="state-name" type="text"
+                style="width: 90%; border: none; border-radius: 5px; background-color: white; height: 35px;"
+                placeholder="Type Here..." maxlength="100">
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Date of Arrival </p>
+            <p style="display: inline; font-size: 30px; color: red;"> * </p>
+            <br>
+            <input id="arrival-date" type="date"
+                style="display: block; width: 135px; border: none; border-radius: 5px; background-color: white;"
+                maxlength="100">
+            <p id="arrival-error" style="color: red; margin-bottom: 0px; display: none;"> Please provide an arrival date
+            </p>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Experience Rating </p>
+            <p style="display: inline; font-size: 30px; color: red;"> * </p>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex; justify-content: space-between; width: 250px;">
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExperienceRating(1)">
+                        <i class="fa-solid fa-star fa-lg" id="filter-star1"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExperienceRating(2)">
+                        <i class="fa-solid fa-star fa-lg" id="filter-star2"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExperienceRating(3)">
+                        <i class="fa-solid fa-star fa-lg" id="filter-star3"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExperienceRating(4)">
+                        <i class="fa-solid fa-star fa-lg" id="filter-star4"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExperienceRating(5)">
+                        <i class="fa-solid fa-star fa-lg" id="filter-star5"></i> </button>
+                    <button class="btn btn-secondary"
+                        style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 13px;"
+                        onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                        onmouseout="changeBackgroundColor(this, '#FACAD4')" onclick="setExperienceRating(0)">
+                        Clear </button>
+                </div>
+            </div>
+            <p id="experience-error" style="color: red; margin-bottom: 0px; display: none;"> Please provide an
+                experience rating </p>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Expense Rating </p>
+            <p style="display: inline; font-size: 30px; color: red;"> * </p>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="display: flex; justify-content: space-between; width: 250px;">
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExpenseRating(1)">
+                        <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar1"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExpenseRating(2)">
+                        <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar2"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExpenseRating(3)">
+                        <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar3"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExpenseRating(4)">
+                        <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar4"></i> </button>
+                    <button style="border: none; background-color: transparent; display: block;"
+                        onclick="setExpenseRating(5)">
+                        <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar5"></i> </button>
+                    <button class="btn btn-secondary"
+                        style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 13px;"
+                        onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                        onmouseout="changeBackgroundColor(this, '#FACAD4')" onclick="setExpenseRating(0)">
+                        Clear </button>
+                </div>
+            </div>
+            <p id="expense-error" style="color: red; margin-bottom: 0px; display: none;"> Please provide an expense
+                rating </p>
+        </div>
+
+        <div style="height: 20px;"> </div>
+    </div>
+
+    <div style="margin-top: 30px; margin-bottom: 10px; display: flex; justify-content: space-between; width: 200px; margin: auto;">
+        <button
+            style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 15px; display: block; margin: auto; border-radius: 5px;"
+            onmouseover="changeBackgroundColor(this, '#D8CAFA')" onmouseout="changeBackgroundColor(this, '#FACAD4')"
+            onclick="editPlace()">
+            Edit Place </button>
+        <button
+            style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 15px; display: block; margin: auto; border-radius: 5px;"
+            onmouseover="changeBackgroundColor(this, '#D8CAFA')" onmouseout="changeBackgroundColor(this, '#FACAD4')"
+            onclick="deletePlace()">
+            Delete Place
+        </button>
+    </div>
+
+    <p id="success-message" style="color: green; width: 90%; margin: auto; text-align: center; display: none;"> Place
+        was successfully
+        updated! </p>
+
+    <div style="height: 50px;"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/c94157e3b2.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        function changeIconColor(element, color) {
+            element.style.color = color;
+        }
+
+        function revertIconColor(element) {
+            element.style.color = '';
+        }
+
+        function changeBackgroundColor(element, color) {
+            element.style.backgroundColor = color;
+        }
+
+        let currentExperienceRating = 0;
+        let currentExpenseRating = 0;
+
+        function setExperienceRating(num) {
+            currentExperienceRating = num;
+
+            if (num === 0) {
+                for (let i = 1; i <= 5; i++) {
+                    let starID = `filter-star${i.toString()}`;
+                    document.getElementById(starID).style.color = '';
+                }
+            }
+            else {
+                for (let i = 1; i <= 5; i++) {
+                    let starID = `filter-star${i.toString()}`;
+                    document.getElementById(starID).style.color = '';
+                    if (i <= num) {
+                        document.getElementById(starID).style.color = 'gold';
+                    }
+                }
+            }
+        }
+
+        function setExpenseRating(num) {
+            currentExpenseRating = num;
+
+            if (num === 0) {
+                for (let i = 1; i <= 5; i++) {
+                    let starID = `filter-dollar${i.toString()}`;
+                    document.getElementById(starID).style.color = '';
+                }
+            }
+            else {
+                for (let i = 1; i <= 5; i++) {
+                    let starID = `filter-dollar${i.toString()}`;
+                    document.getElementById(starID).style.color = '';
+                    if (i <= num) {
+                        document.getElementById(starID).style.color = 'green';
+                    }
+                }
+            }
+        }
+
+        let url = window.location.href;
+        let urlParts = url.split('/');
+        let placeID = urlParts[urlParts.length - 1];
+
+        async function prefillData() {
+            try {
+                const {
+                    data: { place }
+                } = await axios.get(`/getplace/${placeID}`);
+
+                let arrivalDate = place.arrivalDate.toString();
+                arrivalDate = arrivalDate.substring(0, 10);
+                let dateInfo = arrivalDate.split('-');
+                let updatedDateInfo = `${dateInfo[0]}-${dateInfo[1]}-${dateInfo[2]}`;
+
+                document.getElementById('place-name').value = place.placeName;
+                document.getElementById('city-name').value = place.cityName;
+                document.getElementById('country-name').value = place.countryName;
+                document.getElementById('state-name').value = place.stateName;
+                document.getElementById('arrival-date').value = updatedDateInfo;
+                setExperienceRating(place.experienceRating);
+                setExpenseRating(place.expenseRating);
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+        prefillData();
+
+        async function editPlace() {
+            try {
+                let placeName = document.getElementById('place-name').value;
+                let cityName = document.getElementById('city-name').value;
+                let countryName = document.getElementById('country-name').value;
+                let stateName = document.getElementById('state-name').value;
+                let arrivalDate = document.getElementById('arrival-date').value;
+
+                placeName.trim().length === 0 ? document.getElementById('place-error').style.display = 'block' : document.getElementById('place-error').style.display = 'none';
+                //cityName.trim().length === 0 ? document.getElementById('city-error').style.display = 'block' : document.getElementById('city-error').style.display = 'none';
+                countryName.trim().length === 0 ? document.getElementById('country-error').style.display = 'block' : document.getElementById('country-error').style.display = 'none';
+                !arrivalDate ? document.getElementById('arrival-error').style.display = 'block' : document.getElementById('arrival-error').style.display = 'none';
+                currentExperienceRating === 0 ? document.getElementById('experience-error').style.display = 'block' : document.getElementById('experience-error').style.display = 'none';
+                currentExpenseRating === 0 ? document.getElementById('expense-error').style.display = 'block' : document.getElementById('expense-error').style.display = 'none';
+                stateName.trim().length === 0 ? stateName = '' : stateName = stateName;
+
+                if (placeName.trim().length !== 0 && countryName.trim().length !== 0
+                    && arrivalDate && currentExperienceRating !== 0 && currentExpenseRating !== 0) {
+
+                    const placeObject = {
+                        placeName,
+                        cityName,
+                        countryName,
+                        stateName,
+                        arrivalDate,
+                        experienceRating: currentExperienceRating,
+                        expenseRating: currentExpenseRating
+                    }
+
+                    await axios.patch(`/editplace/${placeID}`, placeObject);
+
+                    document.getElementById('success-message').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('success-message').style.display = 'none';
+                    }, 3000);
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
+        async function deletePlace() {
+            try {
+                await axios.delete(`/deleteplace/${placeID}`);
+                location.href = '/';
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

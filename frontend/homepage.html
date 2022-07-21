@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <title> Places </title>
+</head>
+
+<body style="background-color: #FAF0CA; font-family: 'Raleway', sans-serif;">
+
+    <h1 style="text-align: center; margin-top: 15px;"> Places </h1>
+
+    <div class="beginning"
+        style="margin-top: 2%; height: auto; display: flex; flex-wrap: wrap; justify-content: space-around;">
+        <div class="add-place-button" style="width: 200px; text-align: center; height: 100px;">
+            <button class="btn btn-secondary"
+                style="background-color: #FACAD4; border: none; margin-top: 15%; text-align: center; color: black"
+                onclick="location.href = '/addplace'" onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                onmouseout="changeBackgroundColor(this, '#FACAD4')">
+                Add
+                Place </button>
+        </div>
+
+        <div class="filters" style="width: 200px; text-align: center; height: 100px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                style="background-color: #FACAD4; border: none; margin-top: 15%; text-align: center; color: black"
+                onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                onmouseout="changeBackgroundColor(this, '#FACAD4')">
+                Apply Filters
+            </button>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 275px;">
+                <div style="width: 87.75%; margin: auto; margin-top: 10px;">
+                    <p style="margin-bottom: 1.5px;"> Experience Rating: </p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; justify-content: space-between; width: 60%">
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExperienceRating(event, 1)">
+                                <i class="fa-solid fa-star fa-lg" id="filter-star1"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExperienceRating(event, 2)">
+                                <i class="fa-solid fa-star fa-lg" id="filter-star2"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExperienceRating(event, 3)">
+                                <i class="fa-solid fa-star fa-lg" id="filter-star3"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExperienceRating(event, 4)">
+                                <i class="fa-solid fa-star fa-lg" id="filter-star4"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExperienceRating(event, 5)">
+                                <i class="fa-solid fa-star fa-lg" id="filter-star5"></i> </button>
+                        </div>
+                        <button class="btn btn-secondary"
+                            style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 13px;"
+                            onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                            onmouseout="changeBackgroundColor(this, '#FACAD4')" onclick="setExperienceRating(event, 0)">
+                            Clear </button>
+                    </div>
+                </div>
+
+                <div style="width: 87.75%; margin: auto; margin-top: 10px;">
+                    <p style="margin-bottom: 1.5px;"> Expense Rating: </p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; justify-content: space-between; width: 60%">
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExpenseRating(event, 1)">
+                                <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar1"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExpenseRating(event, 2)">
+                                <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar2"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExpenseRating(event, 3)">
+                                <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar3"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExpenseRating(event, 4)">
+                                <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar4"></i> </button>
+                            <button style="border: none; background-color: transparent; display: block;"
+                                onclick="setExpenseRating(event, 5)">
+                                <i class="fa-solid fa-dollar-sign fa-lg" id="filter-dollar5"></i> </button>
+                        </div>
+                        <button class="btn btn-secondary"
+                            style="border: none; background-color: #FACAD4; color: black; text-align: center; font-size: 13px;"
+                            onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                            onmouseout="changeBackgroundColor(this, '#FACAD4')"
+                            onclick="setExpenseRating(event, this, 0)">
+                            Clear </button>
+                    </div>
+                </div>
+
+                <div style="width: 90%; margin: auto;">
+                    <input id="place-name" type="text" class="form-control" id="event-name-search"
+                        placeholder="Place Name" style="margin-top: 15px;" maxlength="100">
+                </div>
+
+                <div style="width: 90%; margin: auto;">
+                    <input id="city-name" type="text" class="form-control" id="location-search" placeholder="City Name"
+                        style="margin-top: 15px;" maxlength="100">
+                </div>
+
+                <div style="width: 90%; margin: auto;">
+                    <input id="country-name" type="text" class="form-control" id="event-name-search"
+                        placeholder="Country Name" style="margin-top: 15px;" maxlength="100">
+                </div>
+
+                <div style="width: 90%; margin: auto; margin-top: 15px;">
+                    <button class="btn btn-secondary"
+                        style="border: none; background-color: #FACAD4; color: black; text-align: center;"
+                        onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                        onmouseout="changeBackgroundColor(this, '#FACAD4')" onclick="getPlaces(2)"> Apply </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-out-button" style="width: 200px; text-align: center; height: 100px;">
+            <button class="btn btn-secondary"
+                style="background-color: #FACAD4; border: none; margin-top: 15%; text-align: center; color: black"
+                onclick="logOut()" onmouseover="changeBackgroundColor(this, '#D8CAFA')"
+                onmouseout="changeBackgroundColor(this, '#FACAD4')">
+                Log Out </button>
+        </div>
+    </div>
+
+    <div id="places-list"
+        style="width: 90%; margin: auto; display: flex; justify-content: space-around; flex-wrap: wrap;">
+    </div>
+
+    <div id="page-end" style="margin-top: 30px; margin-bottom: 30px;">
+        <div style="width: 100px; display: flex; justify-content: space-between; margin: auto;">
+            <button style="border: none; background-color: transparent;" onmouseover="changeIconColor(this, 'blue')"
+                onmouseout="revertIconColor(this)" onclick="getPlaces(0)"> <i
+                    class="fa-solid fa-circle-arrow-left fa-lg"></i> </button>
+            <button style="border: none; background-color: transparent;" onmouseover="changeIconColor(this, 'blue')"
+                onmouseout="revertIconColor(this)" onclick="getPlaces(1)"> <i
+                    class="fa-solid fa-circle-arrow-right fa-lg"></i> </button>
+        </div>
+        <p id="page-tracker" style="width: 100px; margin: auto; text-align: center; margin-top: 7px; font-size: 15px;">
+        </p>
+    </div>
+
+    <p id="no-results"
+        style="width: 90%; margin: auto; text-align: center; margin-top: 20px; color: red; display: none;"> No results
+        to display </p>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/c94157e3b2.js" crossorigin="anonymous"></script>
+</body>
+
+<script>
+    function changeIconColor(element, color) {
+        element.style.color = color;
+    }
+
+    function revertIconColor(element) {
+        element.style.color = '';
+    }
+
+    function changeBackgroundColor(element, color) {
+        element.style.backgroundColor = color;
+    }
+
+    const starRatings = [
+        '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+        '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+        '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+        '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i>',
+        '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i>'
+    ];
+
+    let currentExperienceRating = 0;
+    let currentExpenseRating = 0;
+
+    function setExperienceRating(event, num) {
+        event.stopPropagation();
+        if (num === 0) {
+            for (let i = 1; i <= 5; i++) {
+                let starID = `filter-star${i.toString()}`;
+                document.getElementById(starID).style.color = '';
+            }
+            currentExperienceRating = 0;
+        }
+        else {
+            for (let i = 1; i <= 5; i++) {
+                let starID = `filter-star${i.toString()}`;
+                document.getElementById(starID).style.color = '';
+                if (i <= num) {
+                    document.getElementById(starID).style.color = 'gold';
+                }
+            }
+            currentExperienceRating = num;
+        }
+    }
+
+    function setExpenseRating(event, num) {
+        event.stopPropagation();
+        if (num === 0) {
+            for (let i = 1; i <= 5; i++) {
+                let starID = `filter-dollar${i.toString()}`;
+                document.getElementById(starID).style.color = '';
+            }
+            currentExpenseRating = 0;
+        }
+        else {
+            for (let i = 1; i <= 5; i++) {
+                let starID = `filter-dollar${i.toString()}`;
+                document.getElementById(starID).style.color = '';
+                if (i <= num) {
+                    document.getElementById(starID).style.color = 'green';
+                }
+            }
+            currentExpenseRating = num;
+        }
+    }
+
+    let placeStructure = (placeID, name, city, state, country, stars) => {
+        return (
+            `<div class="card-body" style=" background-color: #CAFAF0; border-radius: 15px;">
+                <h5 class="card-title"> ${name} </h5>
+                <p class="card-text" style="margin-bottom: 10px;">
+                    <i class="fa-solid fa-location-dot fa-lg" style="margin-right: 3px; color: #f02a0f"></i> ${city !== '' ? city + ',' : ''} ${state !== '' ? state + ',' : ''} ${country}
+                </p>
+                <p class="card-text" style="margin-bottom: 25px;">
+                    ${starRatings[stars - 1]}
+                </p>
+                <div style="width: 50%; margin: auto; display: flex; justify-content: space-around;">
+                    <button style="border: none; background-color: transparent;"> 
+                        <i class="fa-solid fa-arrow-right-to-bracket fa-lg"
+                            onmouseover="changeIconColor(this, 'green')" onclick="location.href = '/viewplace/${placeID}'" onmouseout="revertIconColor(this)"></i>
+                    </button>
+                    <button style="border: none; background-color: transparent;" onclick="location.href = '/editplace/${placeID}'"> 
+                        <i class="fa-solid fa-pen-to-square fa-lg" onmouseover="changeIconColor(this, 'orange')"
+                            onmouseout="revertIconColor(this)"></i> 
+                    </button>
+                </div>
+            </div>`);
+    }
+
+    function getQueryParameters() {
+        let queryString = '';
+
+        if (currentExperienceRating > 0) {
+            queryString = queryString + `&experienceRating=${currentExperienceRating.toString()}`;
+        }
+
+        if (currentExpenseRating > 0) {
+            queryString = queryString + `&expenseRating=${currentExpenseRating.toString()}`;
+        }
+
+        if (document.getElementById('place-name').value.trim().length > 0) {
+            queryString = queryString + `&placeName=${document.getElementById('place-name').value}`;
+        }
+
+        if (document.getElementById('city-name').value.trim().length > 0) {
+            queryString = queryString + `&cityName=${document.getElementById('city-name').value}`;
+        }
+
+        if (document.getElementById('country-name').value.trim().length > 0) {
+            queryString = queryString + `&countryName=${document.getElementById('country-name').value}`;
+        }
+
+        return queryString;
+    }
+
+    let currentPage = 1;
+    async function getPlaces(num) {
+        try {
+            let queryString = getQueryParameters();
+            console.log(queryString);
+
+            const {
+                data: { places }
+            } = await axios.get(`/getplaces?${queryString}`);
+
+            let placesPerPage = 9;
+            let totalNumberOfPlaces = places.length;
+            let numberOfPages = Math.ceil(totalNumberOfPlaces / placesPerPage);
+
+            if (num === 0 && currentPage > 1) {
+                currentPage = currentPage - 1;
+            }
+
+            if (num === 1 && currentPage < numberOfPages) {
+                currentPage = currentPage + 1;
+            }
+
+            document.getElementById('places-list').innerHTML = '';
+            for (let i = (currentPage - 1) * placesPerPage; i < ((currentPage - 1) * placesPerPage) + placesPerPage; i++) {
+                if (i === totalNumberOfPlaces) {
+                    break;
+                }
+                let currentPlace = places[i];
+                let place = document.createElement('div');
+                place.className = 'place-item';
+                place.id = currentPlace._id;
+                place.style.border = 'none';
+                place.style.width = '320px';
+                place.style.marginBottom = '20px';
+                place.innerHTML = placeStructure(currentPlace._id, currentPlace.placeName, currentPlace.cityName, currentPlace.stateName, currentPlace.countryName, currentPlace.experienceRating);
+                document.getElementById('places-list').appendChild(place);
+            }
+
+            document.getElementById('page-tracker').textContent = `Page ${currentPage} of ${numberOfPages}`;
+
+            if (places.length === 0) {
+                document.getElementById('page-end').style.display = 'none';
+                document.getElementById('no-results').style.display = 'block';
+            }
+            else {
+                document.getElementById('page-end').style.display = 'block';
+                document.getElementById('no-results').style.display = 'none';
+            }
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function logOut() {
+        try {
+            console.log('log out');
+            await axios.get('/logout');
+            location.href = '/login';
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+    getPlaces(2);
+</script>
+
+</html>

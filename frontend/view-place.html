@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+    <title> Places </title>
+</head>
+
+<body style="background-color: #FAF0CA; font-family: 'Raleway', sans-serif;">
+    <button style="border: none; background-color: transparent; margin-top: 10px;"
+        onmouseover="changeIconColor(this, 'red')" onmouseout="revertIconColor(this)"
+        onclick="location.href = '/'"> <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> </button>
+
+    <h1 style="text-align: center; margin-top: 15px;"> View Place </h1>
+
+    <div style="width: 90%; margin: auto; margin-top: 2%; background-color: #CAFAF0; border-radius: 10px;">
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px;"> Place Name </p>
+            <p id="place-name"> </p>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px;"> City Name </p>
+            <p id="city-name"> </p>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px;"> Country Name </p>
+            <p id="country-name"> </p>
+        </div>
+
+        <div style="width: 90%; margin: auto; margin-top: 12.5px;">
+            <p style="font-size: 20px; margin-bottom: 5px;"> State/Province Name </p>
+            <p id="state-name"> </p>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 5px; display: inline;"> Date of Arrival </p>
+            <p id="arrival-date"> </p>
+        </div>
+
+        <div style="width: 90%; margin: auto; margin-bottom: 25px;">
+            <p style="font-size: 20px; margin-bottom: 0px;"> Experience Rating </p>
+            <br>
+            <div id="experience-container" style="display: flex; justify-content: space-between; width: 200px;"></div>
+        </div>
+
+        <div style="width: 90%; margin: auto;">
+            <p style="font-size: 20px; margin-bottom: 0px;"> Expense Rating </p>
+            <br>
+            <div id="expense-container"
+                style="display: flex; justify-content: space-between; width: 200px;"></div>
+
+        </div>
+
+        <div style="height: 20px;"> </div>
+    </div>
+
+    <div style="height: 50px;"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/c94157e3b2.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        function changeIconColor(element, color) {
+            element.style.color = color;
+        }
+
+        function revertIconColor(element) {
+            element.style.color = '';
+        }
+
+        const starRatings = [
+            '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+            '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+            '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i> <i class="fa-solid fa-star fa-lg"></i>',
+            '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg"></i>',
+            '<i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i> <i class="fa-solid fa-star fa-lg" style="color: gold;"></i>'
+        ];
+
+        const dollarRatings = [
+            '<i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i>',
+            '<i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i>',
+            '<i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i>',
+            '<i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg"></i>',
+            '<i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i> <i class="fa-solid fa-dollar-sign fa-lg" style="color: green;"></i>'
+        ];
+
+        let url = window.location.href;
+        let urlParts = url.split('/');
+        let placeID = urlParts[urlParts.length - 1];
+
+        async function prefillData() {
+            try {
+                const {
+                    data: { place }
+                } = await axios.get(`/getplace/${placeID}`);
+
+                document.getElementById('place-name').textContent = place.placeName;
+                document.getElementById('city-name').textContent = place.cityName;
+                document.getElementById('country-name').textContent = place.countryName;
+                document.getElementById('state-name').textContent = place.stateName;
+
+                let arrivalDate = place.arrivalDate.toString();
+                arrivalDate = arrivalDate.substring(0, 10);
+                let dateInfo = arrivalDate.split('-');
+                let updatedDateInfo = `${dateInfo[0]}-${dateInfo[1]}-${dateInfo[2]}`;
+                document.getElementById('arrival-date').textContent = `${dateInfo[1]}/${dateInfo[2]}/${dateInfo[0]}`;
+
+                document.getElementById('experience-container').innerHTML = starRatings[place.experienceRating - 1];
+                document.getElementById('expense-container').innerHTML = dollarRatings[place.expenseRating - 1];
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
+
+        prefillData();
+    </script>
+</body>
+
+</html>
