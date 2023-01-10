@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 app.get('/signup', async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/sign-up-page.html'));
+        res.sendFile(path.join(__dirname, '/frontend/sign-up-page.html'));
     }
     catch (error) {
         res.status(500).json({ error });
@@ -46,7 +46,7 @@ app.get('/signup', async (req, res) => {
 
 app.get('/login', async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/login-page.html'));
+        res.sendFile(path.join(__dirname, '/frontend/login-page.html'));
     }
     catch (error) {
         res.status(500).json({ error });
@@ -118,7 +118,7 @@ function isLoggedIn(req, res, next) {
 
 app.get('/', isLoggedIn, async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/homepage.html'));
+        res.sendFile(path.join(__dirname, '/frontend/homepage.html'));
     }
     catch (error) {
         res.status(500).json({ error });
@@ -181,7 +181,7 @@ app.get('/getplace/:id', isLoggedIn, async (req, res) => {
 
 app.get('/addplace', isLoggedIn, async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/add-place.html'))
+        res.sendFile(path.join(__dirname, '/frontend/add-place.html'))
     }
     catch (error) {
         res.status(500).json({ error });
@@ -214,7 +214,7 @@ app.post('/addplace', isLoggedIn, async (req, res) => {
 
 app.get('/editplace/:id', isLoggedIn, async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/edit-place.html'));
+        res.sendFile(path.join(__dirname, '/frontend/edit-place.html'));
     }
     catch (error) {
         res.status(500).json({ error });
@@ -244,7 +244,7 @@ app.patch('/editplace/:id', isLoggedIn, async (req, res) => {
 
 app.get('/viewplace/:id', isLoggedIn, async (req, res) => {
     try {
-        res.sendFile(path.join(__dirname, '..', '/frontend/view-place.html'));
+        res.sendFile(path.join(__dirname, '/frontend/view-place.html'));
     }
     catch (error) {
         res.status(500).json({ error });
