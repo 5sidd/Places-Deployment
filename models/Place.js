@@ -30,11 +30,6 @@ const PlaceSchema = new mongoose.Schema({
     expenseRating: {
         type: Number,
         required: [true, 'Please provide an expense rating']
-    },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: [true, 'Please provide an owner']
     }
 });
 
