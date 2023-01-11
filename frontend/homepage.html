@@ -115,14 +115,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="log-out-button" style="width: 200px; text-align: center; height: 100px;">
-            <button class="btn btn-secondary"
-                style="background-color: #FACAD4; border: none; margin-top: 15%; text-align: center; color: black"
-                onclick="logOut()" onmouseover="changeBackgroundColor(this, '#D8CAFA')"
-                onmouseout="changeBackgroundColor(this, '#FACAD4')">
-                Log Out </button>
-        </div>
     </div>
 
     <div id="places-list"
@@ -324,17 +316,6 @@
                 document.getElementById('page-end').style.display = 'block';
                 document.getElementById('no-results').style.display = 'none';
             }
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-    async function logOut() {
-        try {
-            console.log('log out');
-            await axios.get('/logout');
-            location.href = '/login';
         }
         catch (error) {
             console.log(error);
